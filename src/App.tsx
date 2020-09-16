@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import TaskInput from './components/TaskInput'
+import TaskList from './components/TaskList'
+import {Task} from './components/Types'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const initialState: Task[] =[
+  {
+    id:2,
+    title: '次にやるもの',
+    done: false
+  },{
+    id: 1,
+    title: 'はじめにやるもの',
+    done: true
+  }
+]
+
+const App: React.FC =()=>{
+  const [tasks, setTasks] = useState(initialState)
+
+  return(
+    <div>
+      <TaskInput setTasks={setTasks} tasks={tasks}/>
+      <TaskList setTasks={setTasks} tasks={tasks} />
     </div>
-  );
+  )
 }
+
 
 export default App;
